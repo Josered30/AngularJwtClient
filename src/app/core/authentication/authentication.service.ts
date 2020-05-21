@@ -25,8 +25,8 @@ export class AuthenticationService {
       .pipe(
         tap((response) => {
           const tokens: Tokens = {
-            Token: response.headers.get('auth-token'),
-            RefreshToken: response.headers.get('refresh-token')
+            Token: response.headers.get('Auth-token'),
+            RefreshToken: response.headers.get('Refresh-token')
           };
           this.doLoginUser(response.body.id, tokens);
         }),
@@ -57,8 +57,8 @@ export class AuthenticationService {
     return this.http.post<any>(`${environment.apiUrl}/auth/refresh`, { refresh }, { observe: 'response' })
       .pipe(tap((response) => {
         const tokens: Tokens = {
-          Token: response.headers.get('auth-token'),
-          RefreshToken: response.headers.get('refresh-token')
+          Token: response.headers.get('Auth-token'),
+          RefreshToken: response.headers.get('Refresh-token')
         };
         this.storeTokens(tokens);
       }));
